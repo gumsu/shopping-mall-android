@@ -31,6 +31,9 @@ android {
         jvmTarget = '1.8'
     }
 }
+ext {
+    anko_version = '0.10.8'
+}
 
 dependencies {
 
@@ -41,4 +44,10 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // anko
+    implementation "org.jetbrains.anko:anko:$anko_version"
+    implementation "org.jetbrains.anko:anko-design:$anko_version"
+    implementation "org.jetbrains.anko:anko-design-coroutines:$anko_version"
+    implementation "org.jetbrains.anko:anko-constraint-layout:$anko_version"
 }
