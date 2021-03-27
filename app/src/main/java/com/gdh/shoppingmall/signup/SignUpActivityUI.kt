@@ -61,7 +61,7 @@ class SignUpActivityUI(
                     hint = "Password"
                     setSingleLine()
                     inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-                    bindString(ui.owner, viewModel.email)
+                    bindString(ui.owner, viewModel.password)
                 }
             }.lparams(width = matchParent) {
                 bottomMargin = dip(20)

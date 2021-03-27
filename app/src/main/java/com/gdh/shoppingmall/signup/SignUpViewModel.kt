@@ -59,6 +59,10 @@ class SignUpViewModel(app: Application) : BaseViewModel(app) {
                 true
             }
             signUpRequest.isNotValidPassword() -> {
+                toast("비밀번호는 8자 이상 20자 이하로 입력해주세요.")
+                true
+            }
+            signUpRequest.isNotValidName() -> {
                 toast("이름은 2자 이상 20자 이하로 입력해주세요.")
                 true
             }
