@@ -53,7 +53,6 @@ dependencies {
     implementation "org.jetbrains.anko:anko-design:$anko_version"
     implementation "org.jetbrains.anko:anko-design-coroutines:$anko_version"
     implementation "org.jetbrains.anko:anko-constraint-layout:$anko_version"
-    implementation "org.jetbrains.anko:anko-constraint-layout:$anko_version"
 
     // retrofit, okhhtp
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -66,4 +65,5 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$arch_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$arch_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$arch_version"
+    implementation 'com.github.benimario:ankomvvm:0.1.0'
 }
