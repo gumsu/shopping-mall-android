@@ -1,7 +1,9 @@
 package com.gdh.shoppingmall.api
 
+import com.gdh.shoppingmall.api.request.SignInRequest
 import com.gdh.shoppingmall.api.request.SignUpRequest
 import com.gdh.shoppingmall.api.response.ApiResponse
+import com.gdh.shoppingmall.api.response.SignInResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -27,4 +29,7 @@ interface ParayoApi {
 
     @POST("/api/v1/users")
     suspend fun signUp(@Body signUpRequest: SignUpRequest): ApiResponse<Void>
+
+    @POST("/api/v1/signin")
+    suspend fun signIn(@Body signInRequest: SignInRequest) : ApiResponse<SignInResponse>
 }
