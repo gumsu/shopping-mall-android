@@ -6,6 +6,7 @@ import com.gdh.shoppingmall.api.ParayoApi
 import com.gdh.shoppingmall.api.request.SignInRequest
 import com.gdh.shoppingmall.api.response.ApiResponse
 import com.gdh.shoppingmall.api.response.SignInResponse
+import com.gdh.shoppingmall.common.Prefs
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import net.codephobia.ankomvvm.lifecycle.BaseViewModel
@@ -51,7 +52,12 @@ class SignInViewModel(app: Application) : BaseViewModel(app) {
         }
 
     private fun onSignInResponse(response: ApiResponse<SignInResponse>) {
-        if(response.success) {
+        if(response.success && response.data != null) {
+            Prefs.token = response.data.token
+            Prefs.refreshToken = response.data.refreshToken
+            Prefs.userName = response.data.userName
+            Prefs.userId = response.data.userId
+
             toast("로그인되었습니다.")
             //TODO. 상품 리스트 화면으로 이동
         } else {
