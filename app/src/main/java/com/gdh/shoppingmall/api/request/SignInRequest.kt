@@ -9,6 +9,6 @@ class SignInRequest(
     fun isNotValidEmail() =
         email.isNullOrBlank() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
-    fun inNotValidPassword() =
+    fun isNotValidPassword() =
         password.isNullOrBlank() || password.length !in 8..20
 }
