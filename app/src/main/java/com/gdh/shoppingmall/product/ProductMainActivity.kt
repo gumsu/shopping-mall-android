@@ -2,6 +2,7 @@ package com.gdh.shoppingmall.product
 
 import android.os.Bundle
 import net.codephobia.ankomvvm.components.BaseActivity
+import org.jetbrains.anko.setContentView
 
 class ProductMainActivity : BaseActivity<ProductMainViewModel>() {
 
@@ -9,5 +10,6 @@ class ProductMainActivity : BaseActivity<ProductMainViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ProductMainUI(getViewModel()).setContentView(this)
     }
 }
