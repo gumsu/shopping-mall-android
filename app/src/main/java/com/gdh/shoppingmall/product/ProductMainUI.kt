@@ -3,7 +3,9 @@ package com.gdh.shoppingmall.product
 import android.view.Gravity
 import android.view.MenuItem.SHOW_AS_ACTION_ALWAYS
 import android.view.View
+import android.widget.Toolbar
 import com.gdh.shoppingmall.R
+import com.gdh.shoppingmall.view.borderBottom
 import com.google.android.material.navigation.NavigationView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.design.navigationView
@@ -36,6 +38,8 @@ class ProductMainUI(
             verticalLayout {
                 toolbar {
                     title = "Parayo"
+                    bottomPadding = dip(1)
+                    background = borderBottom(width = dip(1))
                     menu.add("Search")
                         .setIcon(R.drawable.ic_search_black)
                         .setShowAsAction(SHOW_AS_ACTION_ALWAYS)
