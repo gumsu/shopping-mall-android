@@ -7,6 +7,7 @@ import com.gdh.shoppingmall.api.request.SignInRequest
 import com.gdh.shoppingmall.api.response.ApiResponse
 import com.gdh.shoppingmall.api.response.SignInResponse
 import com.gdh.shoppingmall.common.Prefs
+import com.gdh.shoppingmall.product.ProductMainActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import net.codephobia.ankomvvm.lifecycle.BaseViewModel
@@ -59,7 +60,7 @@ class SignInViewModel(app: Application) : BaseViewModel(app) {
             Prefs.userId = response.data.userId
 
             toast("로그인되었습니다.")
-            //TODO. 상품 리스트 화면으로 이동
+            startActivityAndFinish<ProductMainActivity>()
         } else {
             toast(response.message ?: "알 수 없는 오류가 발생했습니다.")
         }

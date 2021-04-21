@@ -4,6 +4,8 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import com.gdh.shoppingmall.api.ParayoApi
+import com.gdh.shoppingmall.common.Prefs
+import com.gdh.shoppingmall.product.ProductMainActivity
 import com.gdh.shoppingmall.signin.SignInActivity
 import com.gdh.shoppingmall.signup.SignUpActivity
 import kotlinx.coroutines.GlobalScope
@@ -23,6 +25,8 @@ import java.lang.Exception
  * startActivity<SignUpActivity>() -> anko에서 제공하는 헬퍼 함수
  *
  * finish() -> 뒤로가기 버튼을 눌렀을 때 다시 보여지면 안되므로 액티비티를 종료시켜준다.
+ *
+ * 토큰 값이 null일 경우 로그인, 토큰 값이 null이 아닐 경우 상품 메인 화면
  */
 
 class IntroActivity : Activity(){
@@ -33,7 +37,11 @@ class IntroActivity : Activity(){
 
         GlobalScope.launch {
             delay(1000)
-            startActivity<SignInActivity>()
+            if(Prefs.token.isNullOrEmpty()) {
+                startActivity<SignInActivity>()
+            } else {
+                startActivity<ProductMainActivity>()
+            }
             finish()
         }
     }
