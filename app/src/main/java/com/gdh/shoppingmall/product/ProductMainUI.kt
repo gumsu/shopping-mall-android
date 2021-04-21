@@ -1,11 +1,15 @@
 package com.gdh.shoppingmall.product
 
 import android.view.Gravity
+import android.view.Menu.NONE
+import android.view.MenuItem
 import android.view.MenuItem.SHOW_AS_ACTION_ALWAYS
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.gdh.shoppingmall.R
+import com.gdh.shoppingmall.common.Prefs
+import com.gdh.shoppingmall.signin.SignInActivity
 import com.gdh.shoppingmall.view.borderBottom
 import com.google.android.material.navigation.NavigationView
 import org.jetbrains.anko.*
@@ -14,6 +18,13 @@ import org.jetbrains.anko.design.navigationView
 import org.jetbrains.anko.support.v4.drawerLayout
 
 /**
+ * NavigationView.OnNavigationItemSelectedListener ->  네비게이션 메뉴 클릭시
+ *                                                     호출될 함수를 정의한 인터페이스 상속, 로직 정의
+ *
+ * NavigationView -> 메뉴 클릭시 네비게이션 드로어를 닫기 위해 객체를 참조할 필요가 있음,
+ *                   ProductMainUI 의 프로퍼티로 lateinit var 추가 선언
+ *                   { ... } 블록을 초기화 해줄 때 앞서 선언한 navigationView 프로퍼티에 객체를 대입
+ *
  * DrawerLayout을 화면의 최상단 레이아웃으로 사용
  *
  * verticalLayout -> LinearLayout의 vertical
@@ -34,7 +45,7 @@ import org.jetbrains.anko.support.v4.drawerLayout
 
 class ProductMainUI(
     private val viewModel: ProductMainViewModel
-) : AnkoComponent<ProductMainActivity> {
+) : AnkoComponent<ProductMainActivity>, NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var navigationView: NavigationView
     lateinit var toolbar: Toolbar
@@ -59,8 +70,39 @@ class ProductMainUI(
                 ProductMainNavHeader()
                     .createView(AnkoContext.create(context, this))
                     .run(::addHeaderView)
+
+                menu.apply {
+                    add(NONE, MENU_ID_INQUIRY, NONE, "내 문의").apply {
+                        setIcon(R.drawable.ic_chat_black)
+                    }
+                    add(NONE, MENU_ID_LOGOUT, NONE, "로그아웃").apply {
+                        setIcon(R.drawable.ic_siginout)
+                    }
+                }
+
+                setNavigationItemSelectedListener(this@ProductMainUI) // this -> NavigationView 객체를 의미
             }.lparams(wrapContent, matchParent) {
                 gravity = Gravity.START
             }
         }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            MENU_ID_INQUIRY -> { viewModel.toast("내 문의") }
+            MENU_ID_LOGOUT -> {
+                Prefs.token = null
+                Prefs.refreshToken = null
+                viewModel.startActivityAndFinish<SignInActivity>()
+            }
+        }
+
+        drawerLayout.closeDrawer(navigationView) // 없으면 다시 돌아왔을 때 여전히 열려 있음
+
+        return true
+    }
+
+    companion object {
+        private const val MENU_ID_INQUIRY = 1
+        private const val MENU_ID_LOGOUT = 2
+    }
 }
