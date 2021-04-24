@@ -3,6 +3,7 @@ package com.gdh.shoppingmall.product.registration
 import android.os.Bundle
 import android.view.MenuItem
 import net.codephobia.ankomvvm.components.BaseActivity
+import org.jetbrains.anko.setContentView
 
 class ProductRegistrationActivity: BaseActivity<ProductRegistrationViewModel>() {
 
@@ -10,6 +11,7 @@ class ProductRegistrationActivity: BaseActivity<ProductRegistrationViewModel>() 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ProductRegistrationUI(getViewModel()).setContentView(this)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "상품 등록"
