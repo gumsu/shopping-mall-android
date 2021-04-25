@@ -1,11 +1,13 @@
 package com.gdh.shoppingmall.api
 
+import com.gdh.shoppingmall.api.request.ProductRegistrationRequest
 import com.gdh.shoppingmall.api.request.SignInRequest
 import com.gdh.shoppingmall.api.request.SignUpRequest
 import com.gdh.shoppingmall.api.response.ApiResponse
 import com.gdh.shoppingmall.api.response.ProductImageUploadResponse
 import com.gdh.shoppingmall.api.response.SignInResponse
 import okhttp3.MultipartBody
+import okhttp3.Response
 import retrofit2.http.*
 
 /**
@@ -36,4 +38,7 @@ interface ParayoApi {
     @Multipart
     @POST("/api/v1/product_images")
     suspend fun uploadProductImages(@Part images: MultipartBody.Part) : ApiResponse<ProductImageUploadResponse>
+
+    @POST("/api/v1/products")
+    suspend fun registerProduct(@Body request: ProductRegistrationRequest) : ApiResponse<Response<Void>>
 }
