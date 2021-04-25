@@ -13,8 +13,6 @@ import org.jetbrains.anko.error
 import java.io.File
 
 /**
- * 이미지를 선택하고 이미지를 등록하는 로직 구현
- *
  * upload() -> 파일 객체를 받아 API 요청에 맞는 파라미터를 생성하고 업로드 API를 호출하는 함수
  *             네트워크 요청이 일어나는 곳이기 때문에 IO 쓰레드에서 수행되도록 해야 한다.
  * MediaType.parse() -> HTTP 요청이나 바디에 사용될 컨텐츠 타입을 지정하는 MediaType 객체 생성
