@@ -37,4 +37,25 @@ class ProductRegistrationViewModel(app: Application) : BaseViewModel(app){
     val productNameLength = MutableLiveData("0/$productNameLimit")
     val descriptionLength = MutableLiveData("0/$descriptionLimit")
 
+    fun checkProductNameLength() {
+        productName.value?.let {
+            if (it.length > productNameLimit) {
+                productName.value = it.take(productNameLimit)
+            }
+            productNameLength.value = "${productName.value?.length}/$productNameLimit"
+        }
+    }
+
+    fun checkDescriptionLength() {
+        description.value?.let {
+            if(it.length > descriptionLimit) {
+                descriptionLength.value = it.take(descriptionLimit)
+            }
+            descriptionLength.value = "${description.value?.length}/$descriptionLimit"
+        }
+    }
+
+    fun onCategorySelect(position: Int) {
+        categoryIdSelected = categoryList[position].id
+    }
 }
