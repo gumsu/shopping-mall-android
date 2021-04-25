@@ -4,7 +4,10 @@ import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import com.bumptech.glide.Glide
 import com.gdh.shoppingmall.R
+import com.gdh.shoppingmall.api.ApiGenerator
+import net.codephobia.ankomvvm.databinding.bindUrl
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
@@ -37,5 +40,14 @@ class ProductRegistrationUI(private val viewModel: ProductRegistrationViewModel)
             scaleType = ImageView.ScaleType.CENTER
             backgroundColor = 0xFFEEEEEE.toInt()
             onClick { viewModel.pickImage(imageNum) }
+            bindUrl(ui.owner, viewModel.imageUrls[imageNum]) {  // 업로드 후 돌려받은 URL이 이미지뷰에 보여지도록 만든다.
+                it?.let {
+                    scaleType = ImageView.ScaleType.CENTER_CROP
+                    Glide.with(this)
+                        .load("${ApiGenerator.HOST}$it")
+                        .centerCrop()
+                        .into(this)
+                }
+            }
         }.lparams(dip(60), dip(60))
 }
