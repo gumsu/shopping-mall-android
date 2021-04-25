@@ -3,10 +3,10 @@ package com.gdh.shoppingmall.api
 import com.gdh.shoppingmall.api.request.SignInRequest
 import com.gdh.shoppingmall.api.request.SignUpRequest
 import com.gdh.shoppingmall.api.response.ApiResponse
+import com.gdh.shoppingmall.api.response.ProductImageUploadResponse
 import com.gdh.shoppingmall.api.response.SignInResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import okhttp3.MultipartBody
+import retrofit2.http.*
 
 /**
  * 비동기 호출을 위해 api 인터페이스를 suspend 함수로 선언한다.
@@ -32,4 +32,8 @@ interface ParayoApi {
 
     @POST("/api/v1/signin")
     suspend fun signIn(@Body signInRequest: SignInRequest) : ApiResponse<SignInResponse>
+
+    @Multipart
+    @POST("/api/v1/product_images")
+    suspend fun uploadProductImages(@Part images: MultipartBody.Part) : ApiResponse<ProductImageUploadResponse>
 }
