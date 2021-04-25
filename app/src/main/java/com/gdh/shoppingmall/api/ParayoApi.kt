@@ -7,7 +7,7 @@ import com.gdh.shoppingmall.api.response.ApiResponse
 import com.gdh.shoppingmall.api.response.ProductImageUploadResponse
 import com.gdh.shoppingmall.api.response.SignInResponse
 import okhttp3.MultipartBody
-import okhttp3.Response
+import retrofit2.Response
 import retrofit2.http.*
 
 /**

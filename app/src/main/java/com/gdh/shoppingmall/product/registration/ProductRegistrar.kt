@@ -5,7 +5,7 @@ import com.gdh.shoppingmall.api.request.ProductRegistrationRequest
 import com.gdh.shoppingmall.api.response.ApiResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import okhttp3.Response
+import retrofit2.Response
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.error
 

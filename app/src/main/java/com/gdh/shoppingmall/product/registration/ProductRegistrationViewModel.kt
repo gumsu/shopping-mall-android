@@ -11,7 +11,7 @@ import com.gdh.shoppingmall.api.response.ProductImageUploadResponse
 import com.gdh.shoppingmall.product.category.categoryList
 import kotlinx.coroutines.launch
 import net.codephobia.ankomvvm.lifecycle.BaseViewModel
-import okhttp3.Response
+import retrofit2.Response
 
 /**
  * imagesUrls -> 이미지 업로드 후에 반환 받은 이미지 주소를 저장할 변수, 주소가 입력되면
