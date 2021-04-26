@@ -29,6 +29,8 @@ class ApiGenerator {
 
     private fun httpClient() = OkHttpClient.Builder().apply {
         addInterceptor(httpLoggingInterceptor())
+        addInterceptor(ApiTokenInterceptor())
+        authenticator(TokenAuthenticator())
     }.build()
 
     private fun refreshClient() = OkHttpClient.Builder().apply {
