@@ -14,7 +14,9 @@ import com.gdh.shoppingmall.view.borderBottom
 import com.google.android.material.navigation.NavigationView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.appcompat.v7.toolbar
+import org.jetbrains.anko.design.floatingActionButton
 import org.jetbrains.anko.design.navigationView
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.support.v4.drawerLayout
 
 /**
@@ -55,16 +57,27 @@ class ProductMainUI(
         ui.drawerLayout {
             drawerLayout = this
 
-            verticalLayout {
-                toolbar = toolbar {
-                    title = "Parayo"
-                    bottomPadding = dip(1)
-                    background = borderBottom(width = dip(1))
-                    menu.add("Search")
-                        .setIcon(R.drawable.ic_search_black)
-                        .setShowAsAction(SHOW_AS_ACTION_ALWAYS)
-                }.lparams(matchParent, wrapContent)
-            }.lparams(matchParent, matchParent)
+            frameLayout {
+                verticalLayout {
+                    toolbar = toolbar {
+                        title = "Parayo"
+                        bottomPadding = dip(1)
+                        background = borderBottom(width = dip(1))
+                        menu.add("Search")
+                            .setIcon(R.drawable.ic_search_black)
+                            .setShowAsAction(SHOW_AS_ACTION_ALWAYS)
+                    }.lparams(matchParent, wrapContent)
+                }.lparams(matchParent, matchParent)
+
+                floatingActionButton {
+                    imageResource = R.drawable.ic_add
+                    onClick { viewModel.openRegistrationActivity() }
+                }.lparams {
+                    bottomMargin = dip(20)
+                    marginEnd = dip(20)
+                    gravity = Gravity.END or Gravity.BOTTOM
+                }
+            }
 
             navigationView = navigationView {
                 ProductMainNavHeader()
@@ -88,7 +101,9 @@ class ProductMainUI(
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            MENU_ID_INQUIRY -> { viewModel.toast("내 문의") }
+            MENU_ID_INQUIRY -> {
+                viewModel.toast("내 문의")
+            }
             MENU_ID_LOGOUT -> {
                 Prefs.token = null
                 Prefs.refreshToken = null
