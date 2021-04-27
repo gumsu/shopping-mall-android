@@ -5,6 +5,7 @@ import com.gdh.shoppingmall.api.request.SignInRequest
 import com.gdh.shoppingmall.api.request.SignUpRequest
 import com.gdh.shoppingmall.api.response.ApiResponse
 import com.gdh.shoppingmall.api.response.ProductImageUploadResponse
+import com.gdh.shoppingmall.api.response.ProductListItemResponse
 import com.gdh.shoppingmall.api.response.SignInResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
@@ -41,4 +42,10 @@ interface ParayoApi {
 
     @POST("/api/v1/products")
     suspend fun registerProduct(@Body request: ProductRegistrationRequest) : ApiResponse<Response<Void>>
+
+    @GET("/api/v1/products")
+    suspend fun getProducts(@Query("productId") productId:Long,
+                            @Query("categoryId") categoryId: Int?,
+                            @Query("direction") direction: String // prev, next
+    ) : ApiResponse<List<ProductListItemResponse>>
 }
