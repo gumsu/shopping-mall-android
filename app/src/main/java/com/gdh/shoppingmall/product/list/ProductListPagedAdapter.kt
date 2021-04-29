@@ -59,7 +59,7 @@ class ProductListPagedAdapter(
             val commaSeparatedPrice = NumberFormat.getNumberInstance().format(item.price)
 
             ui.productName.text = item.name
-            ui.price.text = "\$commaSeparatedPrice $soldOutString"
+            ui.price.text = "₩$commaSeparatedPrice $soldOutString"
 
             Glide.with(ui.imageView)
                 .load("${ApiGenerator.HOST}${item.imagePaths.firstOrNull()}")

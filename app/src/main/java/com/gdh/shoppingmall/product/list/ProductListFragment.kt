@@ -25,10 +25,10 @@ class ProductListFragment : BaseFragment<ProductListViewModel>() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return AnkoContext.create(ctx, this).verticalLayout {
-            textView(categoryId.toString())
-            textView(title)
-        }
+        val viewModel = getViewModel()
+        viewModel.categoryId = categoryId
+
+        return ProductListUI(viewModel).createView(AnkoContext.create(ctx, this))
     }
 
     companion object {
