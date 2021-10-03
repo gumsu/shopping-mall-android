@@ -3,10 +3,7 @@ package com.gdh.shoppingmall.api
 import com.gdh.shoppingmall.api.request.ProductRegistrationRequest
 import com.gdh.shoppingmall.api.request.SignInRequest
 import com.gdh.shoppingmall.api.request.SignUpRequest
-import com.gdh.shoppingmall.api.response.ApiResponse
-import com.gdh.shoppingmall.api.response.ProductImageUploadResponse
-import com.gdh.shoppingmall.api.response.ProductListItemResponse
-import com.gdh.shoppingmall.api.response.SignInResponse
+import com.gdh.shoppingmall.api.response.*
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -48,4 +45,7 @@ interface ParayoApi {
                             @Query("categoryId") categoryId: Int?,
                             @Query("direction") direction: String // prev, next
     ) : ApiResponse<List<ProductListItemResponse>>
+
+    @GET("/api/v1/products/{id}")
+    suspend fun getProducts(@Path("id") id: Long) : ApiResponse<ProductResponse>
 }
