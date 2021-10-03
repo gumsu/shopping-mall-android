@@ -1,7 +1,6 @@
 package com.gdh.shoppingmall.product.search
 
 import android.view.Gravity
-import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gdh.shoppingmall.product.list.ProductListPagedAdapter
 import net.codephobia.ankomvvm.databinding.bindPagedList

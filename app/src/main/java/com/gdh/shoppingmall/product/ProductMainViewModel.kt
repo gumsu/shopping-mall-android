@@ -18,7 +18,7 @@ class ProductMainViewModel(app: Application) : BaseViewModel(app) {
 
     fun openSearchActivity(keyword: String?) {
         keyword?.let {
-            startActivity<ProductRegistrationActivity> {
+            startActivity<ProductSearchActivity> {
                 putExtra(ProductSearchActivity.KEYWORD, keyword)
             }
         } ?: toast("검색 키워드를 입력해주세요.")

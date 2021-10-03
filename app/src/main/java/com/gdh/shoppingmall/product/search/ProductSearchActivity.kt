@@ -19,12 +19,13 @@ class ProductSearchActivity: BaseActivity<ProductSearchViewModel>() {
 
         ProductSearchUI(viewModel).setContentView(this)
 
+        /** 액션바가 뜨지 않는 현상 존재함 **/
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = keyword
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item?.itemId) {
+        when(item.itemId) {
             android.R.id.home -> onBackPressed()
         }
         return true
