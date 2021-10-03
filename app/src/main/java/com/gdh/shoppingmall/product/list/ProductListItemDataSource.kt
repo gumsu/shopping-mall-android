@@ -25,10 +25,13 @@ import org.jetbrains.anko.toast
  * loadBefore() -> 이전(더 나중에 등록된) 데이터를 불러오기 위해 사용, onResult()에 API로부터 받은 첫 번째 데이터 id 넘겨준다.
  *
  * loadAfter() -> 다음(과거) 데이터를 불러오기 위해 사용, onResult()에 API로부터 받은 마지막 데이터 id 넘겨준다.
+ *
+ * 검색 결과는 상품 리스트와 동일한 형태로 출력되기 때문에 상품 리스트 화면에 쓰인 요소들을 약간 수정하여 구현한다.
  */
 
 class ProductListItemDataSource(
-    private val categoryId: Int?
+    private val categoryId: Int?,
+    private val keyword: String? = null
 ) : PageKeyedDataSource<Long, ProductListItemResponse>() {
 
     override fun loadInitial(
@@ -84,7 +87,7 @@ class ProductListItemDataSource(
 
     private fun getProducts(id: Long, direction: String) = runBlocking {
         try {
-            ParayoApi.instance.getProducts(id, categoryId, direction)
+            ParayoApi.instance.getProducts(id, categoryId, direction, keyword)
         } catch (e: Exception) {
             ApiResponse.error<List<ProductListItemResponse>>("알 수 없는 오류가 발생했습니다.")
         }
