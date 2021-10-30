@@ -15,6 +15,9 @@ import retrofit2.http.*
  *
  * @Body 애노테이션은 파라미터 값을 HTTP의 요청 본문에 쓰도록 지시한다.
  * URI에 노출되지 않음
+ *
+ * FCM-TOKEN -> 토큰 값은 널 가능성이 있는 값이지만 API 파라미터는 널 값을 가질 수 없도록 정의해 앞단에서
+ * 널 체크를 강제하고 널이 아닐 경우에만 API를 호출할 수 있도록 한다.
  */
 
 interface ParayoApi {
@@ -49,4 +52,7 @@ interface ParayoApi {
 
     @GET("/api/v1/products/{id}")
     suspend fun getProducts(@Path("id") id: Long) : ApiResponse<ProductResponse>
+
+    @PUT("/api/v1/users/fcm-token")
+    suspend fun updateFcmToken(fcmToken: String) : ApiResponse<Response<Void>>
 }
